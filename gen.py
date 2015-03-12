@@ -125,7 +125,7 @@ computer_prefixes = [
     "neuro",
     "tech",
     "x-",
-    "stegano,"
+    "stegano",
     "click",
     "pheno",
 ]
@@ -136,7 +136,7 @@ biparte_nouns = [
     "local",
     "drone",
     "vector",
-    "graphy,"
+    "graphy,",
     "hacker",
     "blog",
     "speech",    
@@ -224,5 +224,35 @@ def create_politico(politician,p_modifier,s_modifier):
     return(finalpol)
 
 #print("Can %s curb fluctuations in the %s%s market?" % (create_politico(politician,p_modifier,s_modifier),random.choice(computer_prefixes),random.choice(currency)))
-    
-print("Are %s%s %ss disrupting %s %s in the %s space?" % (random.choice(computer_prefixes),random.choice(biparte_nouns),random.choice(buzz_nouns_singular),random.choice(computer_adjectives),random.choice(buzz_nouns_singular),random.choice(buzz_gerund)))
+
+
+def disrupt_gen():
+    return("Are %s%s %ss disrupting %s %ss in the %s space?" % (random.choice(computer_prefixes),random.choice(biparte_nouns),random.choice(buzz_nouns_singular),random.choice(computer_adjectives),random.choice(buzz_nouns_singular),random.choice(buzz_gerund)))
+
+def cur_gen():
+    return("Are %s%ss the new %s%ss?" % (random.choice(computer_prefixes),random.choice(currency).lower(),random.choice(computer_prefixes),random.choice(currency).lower()))
+
+def future_gen():
+    return("%s%s: The future of %s %s?" % (random.choice(computer_prefixes).title(),random.choice(biparte_nouns),random.choice(computer_adjectives),random.choice(buzz_gerund)))
+
+#def hack_gen():
+#    print("%sfounders hack %s with a simple %s) % ())
+
+def generate_sentence():
+    rolldice = random.randint(0,2)
+    if rolldice == 0:
+        return disrupt_gen()
+    if rolldice == 1:
+        return cur_gen()
+    if rolldice == 2:
+        return future_gen()
+
+#print(generate_sentence())
+
+tfile = open("tweets.txt", 'w')
+
+for numtweets in range(0,100):
+    tfile.write(generate_sentence())
+    tfile.write("\n")
+
+tfile.close()
