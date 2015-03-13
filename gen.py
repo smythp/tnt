@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Import "random" library
 import random
 
+# Create word lists by part of speech
 buzz_nouns_singular = [
     "block chain",
     "wearable",
     "big data",
     "Millennial",
-    "Internet Of Things",
+    "thingspace",
     "darkweb",
     "deep web",
     "omnichannel retailing",
@@ -62,6 +64,11 @@ computer_adjectives = [
     "brick-and-mortar",
     "digital",
     "cyber",
+    "mono",
+    "uni",
+    "duplo",
+    "curve",
+    "cloud",
     "geodesic",
     "colocal",
     "electronic",
@@ -136,7 +143,7 @@ biparte_nouns = [
     "local",
     "drone",
     "vector",
-    "graphy,",
+    "graphy",
     "hacker",
     "blog",
     "speech",    
@@ -215,6 +222,45 @@ s_modifier = [
     " Bot",
     ]
 
+hashtags = [
+    '#technology',
+    '#futurism',
+    '#innovation',
+    '#strategics',
+    '#digital',
+    '#tech',
+    '#future',
+    '#analytics',
+    '#b2b',
+    '#BigData',
+    '#data',
+    '#business',
+    '#cloud',
+    '#contextmarketing',
+    '#convergence',
+    '#crm',
+    '#epic',
+    '#ftw',
+    '#unfail',
+    '#FCoE',
+    '#thoughtleader',
+    '#management',
+    '#marketing',
+    '#news',
+    '#PredictiveAnalytics',
+    '#SAP',
+    '#SCRM',
+    '#SEO',
+    '#strategy',
+    '#upandcoming',
+    '#virtualization',
+    '#webdev',
+    '#whitepaper',
+    ]
+
+# Define a function for each template
+# These functions take words and randomly put them into preset sentences
+# Note that I didn't use the first one
 def create_politico(politician,p_modifier,s_modifier):
     lenall = len(p_modifier) + len(s_modifier)
     if random.randint(0,lenall) >= len(p_modifier):
@@ -223,6 +269,9 @@ def create_politico(politician,p_modifier,s_modifier):
         finalpol = ("%s %s" % (random.choice(p_modifier),random.choice(politician)))
     return(finalpol)
 
+# Use print instead of text file write (for testing)
+# Notice this is commented out
+    
 #print("Can %s curb fluctuations in the %s%s market?" % (create_politico(politician,p_modifier,s_modifier),random.choice(computer_prefixes),random.choice(currency)))
 
 
@@ -238,6 +287,8 @@ def future_gen():
 #def hack_gen():
 #    print("%sfounders hack %s with a simple %s) % ())
 
+# This function randonly picks one of the above templates
+# and and rcalls it to create a sentence
 def generate_sentence():
     rolldice = random.randint(0,2)
     if rolldice == 0:
@@ -251,8 +302,28 @@ def generate_sentence():
 
 tfile = open("tweets.txt", 'w')
 
+# Create variable for the site name and a random buzzword hashtag
+site = "technocracynewstoday.com"
+hashtag1 = " #" + random.choice(computer_prefixes) + random.choice(biparte_nouns)
+
+
+#sen1 = generate_sentence() + " " + site + hashtag1
+#print(sen1)
+#print(len(sen1))
+
+# Wites 100 tweets to tweets.py
+# If there's room, also adds two more hashtags to the tweet
+# The /n creates a new line. 
 for numtweets in range(0,100):
-    tfile.write(generate_sentence())
+    hashtag1 = " #" + random.choice(computer_prefixes) + random.choice(biparte_nouns)
+    sen1 = (generate_sentence() + " " + site + hashtag1)
+    for limiting1 in range(0,2):
+        hashtag2 = random.choice(hashtags)
+        if len(sen1) + len(hashtag2) > 138:
+            break
+        else:
+            sen1 = sen1 + " " + hashtag2
+    tfile.write(sen1)
     tfile.write("\n")
 
 tfile.close()
