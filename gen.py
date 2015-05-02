@@ -281,6 +281,10 @@ def disrupt_gen():
 def cur_gen():
     return("Are %s%ss the new %s%ss?" % (random.choice(computer_prefixes),random.choice(currency).lower(),random.choice(computer_prefixes),random.choice(currency).lower()))
 
+def problem_gen():
+    return("The problem with %s%ss" % (random.choice(computer_prefixes).lower(),random.choice(biparte_nouns).lower()))
+
+    
 def future_gen():
     return("%s%s: The future of %s %s?" % (random.choice(computer_prefixes).title(),random.choice(biparte_nouns),random.choice(computer_adjectives),random.choice(buzz_gerund)))
 
@@ -290,14 +294,17 @@ def future_gen():
 # This function randonly picks one of the above templates
 # and and rcalls it to create a sentence
 def generate_sentence():
-    rolldice = random.randint(0,2)
+    rolldice = random.randint(0,3)
     if rolldice == 0:
         return disrupt_gen()
     if rolldice == 1:
         return cur_gen()
     if rolldice == 2:
         return future_gen()
+    if rolldice == 3:
+        return problem_gen()
 
+        
 #print(generate_sentence())
 
 tfile = open("tweets.txt", 'w')
@@ -327,3 +334,5 @@ for numtweets in range(0,100):
     tfile.write("\n")
 
 tfile.close()
+
+# Can sparkstrea survive chaosmonkey?

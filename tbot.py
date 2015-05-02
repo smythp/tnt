@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -10,10 +11,10 @@ import sys
 # and creating a new app. You then have to set permissions to
 # read and write and create a token. Once you have your keys
 # copy them here.
-CONSUMER_KEY = ''
-CONSUMER_SECRET = ''
-ACCESS_KEY = ''
-ACCESS_SECRET = ''
+CONSUMER_KEY = 'VvIdgQtsgD9fRySXqkPq1Yddp'
+CONSUMER_SECRET = 'AOsU7WkWwKLVPaOmP8BZN56P0IbnyGCicCbWsGb9XZERGp8q5N'
+ACCESS_KEY = '3087994289-QzMLdi2wS8aYudyNTrBkfwM6Kpb0wc6JU1r9yOT'
+ACCESS_SECRET = 'gO0Zcey3eKvwUzeKAhA34tKUCsiSpo2mEqL94B7qVjROM'
 
 # The arg stuff is confusing but basically it means you set the
 # file that the tweets are coming from when you run the Python
@@ -33,7 +34,7 @@ f=filename.readlines()
 filename.close()
 
 # Go through the list (f) line by line
-# First tweet the line, then wait 6500 seconds
+# First tweet the line, then wait 1200 seconds
 for line in f:
     api.update_status(status=line)
     time.sleep(6500)
